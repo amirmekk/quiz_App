@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:routing/data/tawarikh.dart';
 
-class CourseAndQuiz extends StatelessWidget {
+class CourseAndQuiz extends StatefulWidget {
   final List courseAndQuiz;
-  CourseAndQuiz({this.courseAndQuiz});
+  CourseAndQuiz({Key key , this.courseAndQuiz}):super(key: key);
 
+  @override
+  _CourseAndQuizState createState() => _CourseAndQuizState();
+}
+
+class _CourseAndQuizState extends State<CourseAndQuiz> {
   @override
   Widget build(BuildContext context) {
     final List wad3iyat = [
@@ -19,7 +25,7 @@ class CourseAndQuiz extends StatelessWidget {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('${courseAndQuiz[1]} ${courseAndQuiz[0]}'),
+            title: Text('${widget.courseAndQuiz[1]} ${widget.courseAndQuiz[0]}'),
             bottom: TabBar(tabs: [
               Tab(text: 'عناصر للحفظ'),
               Tab(text: 'امتحان قصير'),
@@ -30,7 +36,9 @@ class CourseAndQuiz extends StatelessWidget {
               itemBuilder: (context, index) => Card(
                 child: ListTile(
                   onTap: () {
-                    print('saber');
+                    List newTwaraikh = tawarikh.where((i) => i.wad3iya ==index+1 && i.wihda==widget.courseAndQuiz[4]).toList();
+                    Navigator.pushNamed(context, '/wad3iyaPage',
+                        arguments: [wad3iyat[index], newTwaraikh]);
                   },
                   leading: Text(
                     '${index + 1}',
@@ -42,7 +50,7 @@ class CourseAndQuiz extends StatelessWidget {
                   title: Text(wad3iyat[index]),
                 ),
               ),
-              itemCount: courseAndQuiz[2],
+              itemCount: widget.courseAndQuiz[2],
             ),
             ListView.builder(
               itemBuilder: (context, index) => Card(
@@ -57,7 +65,7 @@ class CourseAndQuiz extends StatelessWidget {
                   title: Text(wad3iyat[index]),
                 ),
               ),
-              itemCount: courseAndQuiz[3],
+              itemCount: widget.courseAndQuiz[3],
             ),
           ]),
         ),

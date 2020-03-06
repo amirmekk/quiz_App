@@ -25,7 +25,7 @@ class _TawarikhState extends State<Tawarikh> {
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, '/courseAndQuiz',
-                    arguments: [_wa7adat[index], 'تواريخ', 4, 2]);
+                    arguments: [_wa7adat[index], 'تواريخ', 4, 2, index + 1]);
               },
               child: Container(
                 margin: EdgeInsets.all(10),
@@ -74,18 +74,45 @@ class _TawarikhState extends State<Tawarikh> {
             Card(
               child: ListTile(
                 leading: Icon(Icons.library_books),
-                title: Text('مصطلح عشوائي'),
+                title: Text('تاريخ عشوائي'),
                 onTap: () {
                   var rng = new Random();
                   var randomItem = tawarikh[rng.nextInt(tawarikh.length)];
                   showDialog(
                       context: context,
-                      builder: (_) => AlertDialog(
-                            title: Text('${randomItem.tarikh}'),
-                            content: Text('${randomItem.hadath}'),
-                            actions: <Widget>[
-                              Text('ok'),
-                            ],
+                      builder: (_) => Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: AlertDialog(
+                              title: Text('${randomItem.tarikh}'),
+                              content: Text('${randomItem.hadath}'),
+                              actions: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        child: Icon(
+                                          Icons.star_border,
+                                          size: 30,
+                                        ),
+                                        onTap: () {
+                                          print('stared');
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: Icon(
+                                    Icons.check_circle,
+                                    size: 30,
+                                  ),
+                                  onTap: () {
+                                    Navigator.pop(context, 'OK');
+                                  },
+                                ),
+                              ],
+                            ),
                           ));
                 },
               ),
@@ -99,7 +126,7 @@ class _TawarikhState extends State<Tawarikh> {
             Card(
               child: ListTile(
                 leading: Icon(Icons.format_align_left),
-                title: Text('جميع التواديخ'),
+                title: Text('جميع التواريخ'),
                 onTap: () {
                   Navigator.pushNamed(context, '/all',
                       arguments: ['التواريخ', tawarikh]);

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:routing/data/tawarikh.dart';
 import 'package:routing/pages/Chakhsiyat.dart';
 import 'package:routing/pages/Mostala7at.dart';
 import 'package:routing/pages/Tawarikh.dart';
+import 'package:routing/tools/search.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,7 +17,7 @@ class _HomeState extends State<Home> {
     Chakhsiyat(),
     Mostala7at(),
   ];
-  List _colors = [Colors.red, Colors.blue, Colors.amber[800]];
+  List _colors = [Colors.amber[800], Colors.blue, Colors.amber[800]];
   void _onItemTaped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -32,9 +34,14 @@ class _HomeState extends State<Home> {
             GestureDetector(
               child: Padding(
                 padding: EdgeInsets.only(left: 8.0),
-                child: IconButton(icon: Icon(Icons.search, size: 40), onPressed: () {print('searching');},),
+                child: IconButton(
+                  icon: Icon(Icons.search, size: 40),
+                  onPressed: () {
+                  showSearch(
+                      context: context, delegate: DataSearch(data: tawarikh));
+                },
+                ),
               ),
-
             )
           ],
           title: Padding(
@@ -66,7 +73,6 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 20,
             ),
-            
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
