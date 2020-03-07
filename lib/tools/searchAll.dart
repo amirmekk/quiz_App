@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class DataSearch extends SearchDelegate {
+class DataSearchAll extends SearchDelegate {
   List data;
-  DataSearch({this.data});
+  DataSearchAll({this.data});
   @override
   List<Widget> buildActions(BuildContext context) {
     return [

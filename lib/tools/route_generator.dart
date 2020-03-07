@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:routing/pages/all.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
 import 'package:routing/pages/home.dart';
+import 'package:routing/pages/quiz.dart';
 import 'package:routing/pages/secondPage.dart';
 import 'package:routing/pages/wad3iyat.dart';
 
@@ -27,6 +28,12 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => Wad3iyaPage(
             appBarTitleData: args,
+          ),
+        );
+        case '/quiz':
+        return MaterialPageRoute(
+          builder: (_) => Quiz(
+            quizData: args,
           ),
         );
       case '/secondPage':

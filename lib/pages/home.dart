@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:routing/data/tawarikh.dart';
+import 'package:routing/data/allData.dart';
 import 'package:routing/pages/Chakhsiyat.dart';
 import 'package:routing/pages/Mostala7at.dart';
 import 'package:routing/pages/Tawarikh.dart';
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                   icon: Icon(Icons.search, size: 40),
                   onPressed: () {
                   showSearch(
-                      context: context, delegate: DataSearch(data: tawarikh));
+                      context: context, delegate: DataSearch(data: allData));
                 },
                 ),
               ),

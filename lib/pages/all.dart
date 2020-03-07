@@ -32,8 +32,8 @@ class All extends StatelessWidget {
                     builder: (_) => Directionality(
                           textDirection: TextDirection.rtl,
                           child: AlertDialog(
-                            title: Text('${allList[1][index].tarikh}'),
-                            content: Text('${allList[1][index].hadath}'),
+                            title: Text('${allList[1][index].itemOne}'),
+                            content: Text('${allList[1][index].itemTwo}'),
                             actions: <Widget>[
                               Container(
                                 margin: EdgeInsets.all(10),
@@ -68,7 +68,7 @@ class All extends StatelessWidget {
                 icon: Icon(Icons.star_border),
                 onPressed: () {},
               ),
-              subtitle: Text('${allList[1][index].hadath}'),
+              subtitle: Text('${allList[1][index].itemTwo}'),
               isThreeLine: true,
               leading: Text(
                 '${index + 1}',
@@ -77,7 +77,7 @@ class All extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              title: Text('${allList[1][index].tarikh}'),
+              title: Text('${allList[1][index].itemOne}'),
             ),
           ),
         )),

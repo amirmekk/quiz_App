@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:routing/data/mostala7atData.dart';
 
 class Mostala7at extends StatefulWidget {
   @override
@@ -51,39 +54,88 @@ class _Mostala7atState extends State<Mostala7at> {
           ),
         ),
         Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    'عناصر متفرقة',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber[800]
-                    ),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.timer),
-                    title: Text('امتحان مصغر - 5 دقائق'),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.library_books),
-                    title: Text('مصطلح عشوائي'),
-                  ),
-                ),
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.timer),
-                    title: Text('امتحان مصغر - 10 دقائق'),
-                  ),
-                ),
-              ],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                'عناصر متفرقة',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber[800]),
+              ),
             ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.timer),
+                title: Text('امتحان مصغر - 5 دقائق'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.library_books),
+                title: Text(' مصطلح عشوائي'),
+                onTap: () {
+                  var rng = new Random();
+                  var randomItem = mostala7at[rng.nextInt(mostala7at.length)];
+                  showDialog(
+                      context: context,
+                      builder: (_) => Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: AlertDialog(
+                              title: Text('${randomItem.itemOne}'),
+                              content: Text('${randomItem.itemTwo}'),
+                              actions: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.all(10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        child: Icon(
+                                          Icons.star_border,
+                                          size: 30,
+                                        ),
+                                        onTap: () {
+                                          print('stared');
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: Icon(
+                                    Icons.check_circle,
+                                    size: 30,
+                                  ),
+                                  onTap: () {
+                                    Navigator.pop(context, 'OK');
+                                  },
+                                ),
+                              ],
+                            ),
+                          ));
+                },
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.timer),
+                title: Text('امتحان مصغر - 10 دقائق'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.format_align_left),
+                title: Text('جميع المصطلحات'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/all',
+                      arguments: ['الشخصيات', mostala7at]);
+                },
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

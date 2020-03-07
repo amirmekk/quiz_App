@@ -69,6 +69,10 @@ class _TawarikhState extends State<Tawarikh> {
               child: ListTile(
                 leading: Icon(Icons.timer),
                 title: Text('امتحان مصغر - 5 دقائق'),
+                onTap: (){
+                  Navigator.pushNamed(context, '/quiz',
+                      arguments: ['التواريخ', tawarikh]);
+                },
               ),
             ),
             Card(
@@ -83,8 +87,8 @@ class _TawarikhState extends State<Tawarikh> {
                       builder: (_) => Directionality(
                             textDirection: TextDirection.rtl,
                             child: AlertDialog(
-                              title: Text('${randomItem.tarikh}'),
-                              content: Text('${randomItem.hadath}'),
+                              title: Text('${randomItem.itemOne}'),
+                              content: Text('${randomItem.itemTwo}'),
                               actions: <Widget>[
                                 Container(
                                   margin: EdgeInsets.all(10),
