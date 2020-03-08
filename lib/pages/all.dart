@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routing/tools/search.dart';
+import 'package:routing/widgets/popUpAlert.dart';
 
 class All extends StatelessWidget {
   final List allList;
@@ -28,41 +29,9 @@ class All extends StatelessWidget {
             child: ListTile(
               onTap: () {
                 showDialog(
-                    context: context,
-                    builder: (_) => Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: AlertDialog(
-                            title: Text('${allList[1][index].itemOne}'),
-                            content: Text('${allList[1][index].itemTwo}'),
-                            actions: <Widget>[
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: Row(
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      child: Icon(
-                                        Icons.star_border,
-                                        size: 30,
-                                      ),
-                                      onTap: () {
-                                        print('stared');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                child: Icon(
-                                  Icons.check_circle,
-                                  size: 30,
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context, 'OK');
-                                },
-                              ),
-                            ],
-                          ),
-                        ));
+                  context: context,
+                  builder: (_) => PopUpAlert(data :allList ,index: index) 
+                );
               },
               trailing: IconButton(
                 icon: Icon(Icons.star_border),

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:routing/data/chakhsiyatData.dart';
 import 'package:routing/data/tawarikh.dart';
+import 'package:routing/widgets/popUpAlert2.dart';
 
 class Chakhsiyat extends StatefulWidget {
   @override
@@ -85,41 +86,9 @@ class _ChakhsiyatState extends State<Chakhsiyat> {
                   var rng = new Random();
                   var randomItem = chakhsiyat[rng.nextInt(chakhsiyat.length)];
                   showDialog(
-                      context: context,
-                      builder: (_) => Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: AlertDialog(
-                              title: Text('${randomItem.itemOne}'),
-                              content: Text('${randomItem.itemTwo}'),
-                              actions: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.all(10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      GestureDetector(
-                                        child: Icon(
-                                          Icons.star_border,
-                                          size: 30,
-                                        ),
-                                        onTap: () {
-                                          print('stared');
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  child: Icon(
-                                    Icons.check_circle,
-                                    size: 30,
-                                  ),
-                                  onTap: () {
-                                    Navigator.pop(context, 'OK');
-                                  },
-                                ),
-                              ],
-                            ),
-                          ));
+                    context: context,
+                    builder: (_) => PopUpAlert2(data: randomItem),
+                  );
                 },
               ),
             ),

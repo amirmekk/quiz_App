@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routing/widgets/popUpAlert.dart';
 
 class DataSearch extends SearchDelegate {
   List data;
@@ -48,40 +49,7 @@ class DataSearch extends SearchDelegate {
               onTap: () {
                 showDialog(
                     context: context,
-                    builder: (_) => Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: AlertDialog(
-                            title: Text('${newData[index].itemOne}'),
-                            content: Text('${newData[index].itemTwo}'),
-                            actions: <Widget>[
-                              Container(
-                                margin: EdgeInsets.all(10),
-                                child: Row(
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      child: Icon(
-                                        Icons.star_border,
-                                        size: 30,
-                                      ),
-                                      onTap: () {
-                                        print('stared');
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                child: Icon(
-                                  Icons.check_circle,
-                                  size: 30,
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context, 'OK');
-                                },
-                              ),
-                            ],
-                          ),
-                        ));
+                    builder: (_) => PopUpAlert(data :newData ,index: index));
               },
               title: Text(newData[index].itemOne),
               subtitle: Text(newData[index].itemTwo),

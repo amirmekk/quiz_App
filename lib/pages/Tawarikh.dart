@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:routing/data/tawarikh.dart';
+import 'package:routing/widgets/popUpAlert2.dart';
 
 class Tawarikh extends StatefulWidget {
   @override
@@ -69,7 +70,7 @@ class _TawarikhState extends State<Tawarikh> {
               child: ListTile(
                 leading: Icon(Icons.timer),
                 title: Text('امتحان مصغر - 5 دقائق'),
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, '/quiz',
                       arguments: ['التواريخ', tawarikh]);
                 },
@@ -83,41 +84,9 @@ class _TawarikhState extends State<Tawarikh> {
                   var rng = new Random();
                   var randomItem = tawarikh[rng.nextInt(tawarikh.length)];
                   showDialog(
-                      context: context,
-                      builder: (_) => Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: AlertDialog(
-                              title: Text('${randomItem.itemOne}'),
-                              content: Text('${randomItem.itemTwo}'),
-                              actions: <Widget>[
-                                Container(
-                                  margin: EdgeInsets.all(10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      GestureDetector(
-                                        child: Icon(
-                                          Icons.star_border,
-                                          size: 30,
-                                        ),
-                                        onTap: () {
-                                          print('stared');
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  child: Icon(
-                                    Icons.check_circle,
-                                    size: 30,
-                                  ),
-                                  onTap: () {
-                                    Navigator.pop(context, 'OK');
-                                  },
-                                ),
-                              ],
-                            ),
-                          ));
+                    context: context,
+                    builder: (_) => PopUpAlert2(data: randomItem),
+                  );
                 },
               ),
             ),

@@ -23,8 +23,8 @@ class Wad3iyaPage extends StatelessWidget {
                           builder: (_) => Directionality(
                                 textDirection: TextDirection.rtl,
                                 child: AlertDialog(
-                                  title: Text('${appBarTitleData[1][index].tarikh}'),
-                                  content: Text('${appBarTitleData[1][index].hadath}'),
+                                  title: Text('${appBarTitleData[1][index].itemOne}'),
+                                  content: Text('${appBarTitleData[1][index].itemTwo}'),
                                   actions: <Widget>[
                                     Container(
                                       margin: EdgeInsets.all(10),
@@ -59,7 +59,7 @@ class Wad3iyaPage extends StatelessWidget {
                       icon: Icon(Icons.star_border),
                       onPressed: () {},
                     ),
-                    subtitle: Text('${appBarTitleData[1][index].hadath}'),
+                    subtitle: Text('${appBarTitleData[1][index].itemTwo}'),
                     isThreeLine: true,
                     leading: Text(
                       '${index + 1}',
@@ -68,7 +68,7 @@ class Wad3iyaPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    title: Text('${appBarTitleData[1][index].tarikh}'),
+                    title: Text('${appBarTitleData[1][index].itemOne}'),
                   ),
                 );
               })),

@@ -3,8 +3,8 @@ import 'package:routing/pages/all.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
 import 'package:routing/pages/home.dart';
 import 'package:routing/pages/quiz.dart';
-import 'package:routing/pages/secondPage.dart';
 import 'package:routing/pages/wad3iyat.dart';
+
 
 class RouteGenerator {
   static Route<dynamic> routeGenerator(RouteSettings settings) {
@@ -36,15 +36,7 @@ class RouteGenerator {
             quizData: args,
           ),
         );
-      case '/secondPage':
-        if (args is String) {
-          return MaterialPageRoute(
-            builder: (_) => SecondPage(
-              i: args,
-            ),
-          );
-        }
-        return _errorRoute();
+
       default:
         return _errorRoute();
     }
