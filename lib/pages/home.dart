@@ -16,6 +16,7 @@ class _HomeState extends State<Home> {
     Tawarikh(),
     Chakhsiyat(),
     Mostala7at(),
+
   ];
   List _colors = [Colors.amber[800], Colors.blue, Colors.amber[800]];
   void _onItemTaped(int index) {
@@ -37,9 +38,9 @@ class _HomeState extends State<Home> {
                 child: IconButton(
                   icon: Icon(Icons.search, size: 40),
                   onPressed: () {
-                  showSearch(
-                      context: context, delegate: DataSearch(data: allData));
-                },
+                    showSearch(
+                        context: context, delegate: DataSearch(data: allData));
+                  },
                 ),
               ),
             )
@@ -55,23 +56,27 @@ class _HomeState extends State<Home> {
           elevation: 0.0,
           backgroundColor: Colors.grey[50],
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: ListView(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 5, 30, 5),
-              child: Text(
-                'الوحدات',
-                style: TextStyle(
-                    fontFamily: 'Amiri',
-                    fontSize: 25,
-                    color: _colors[_selectedIndex],
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            _pages[_selectedIndex],
-            SizedBox(
-              height: 20,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 5, 30, 5),
+                  child: Text(
+                    'الوحدات',
+                    style: TextStyle(
+                        fontFamily: 'Amiri',
+                        fontSize: 25,
+                        color: _colors[_selectedIndex],
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                _pages[_selectedIndex],
+                SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
           ],
         ),
@@ -98,3 +103,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+

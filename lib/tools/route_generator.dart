@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:routing/pages/all.dart';
+import 'package:routing/pages/bookmarks.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
 import 'package:routing/pages/home.dart';
 import 'package:routing/pages/quiz.dart';
 import 'package:routing/pages/wad3iyat.dart';
-
 
 class RouteGenerator {
   static Route<dynamic> routeGenerator(RouteSettings settings) {
@@ -24,13 +24,19 @@ class RouteGenerator {
             allList: args,
           ),
         );
+      case '/bookmarks':
+        return MaterialPageRoute(
+          builder: (_) => Bookmarks(
+            //allList: args,
+          ),
+        );
       case '/wad3iyaPage':
         return MaterialPageRoute(
           builder: (_) => Wad3iyaPage(
             appBarTitleData: args,
           ),
         );
-        case '/quiz':
+      case '/quiz':
         return MaterialPageRoute(
           builder: (_) => Quiz(
             quizData: args,

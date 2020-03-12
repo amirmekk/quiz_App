@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routing/pages/bookmarks.dart';
 import 'package:routing/tools/search.dart';
 import 'package:routing/widgets/popUpAlert.dart';
 
@@ -29,13 +30,16 @@ class All extends StatelessWidget {
             child: ListTile(
               onTap: () {
                 showDialog(
-                  context: context,
-                  builder: (_) => PopUpAlert(data :allList ,index: index) 
-                );
+                    context: context,
+                    builder: (_) => PopUpAlert(data: allList, index: index));
               },
               trailing: IconButton(
-                icon: Icon(Icons.star_border),
-                onPressed: () {},
+                icon: updateBookmarks2(
+                    allList[1][index].itemOne, allList[1][index].itemTwo),
+                onPressed: () {
+                  updateBookmarks(
+                      allList[1][index].itemOne, allList[1][index].itemTwo);
+                }, //updateBookmarks(allList[1][index].itemOne, allList[1][index].itemTwo),
               ),
               subtitle: Text('${allList[1][index].itemTwo}'),
               isThreeLine: true,

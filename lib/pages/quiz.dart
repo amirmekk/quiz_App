@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:routing/data/tawarikh.dart';
 
 class Quiz extends StatefulWidget {
   final List quizData;
@@ -9,83 +10,86 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   @override
+  void initState() {
+    super.initState();
+    //_generateQAndA(tawarikh);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Directionality(
-      textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.blueGrey,
         body: Container(
-            padding: EdgeInsets.fromLTRB(20, 50, 20, 0),
-            child: Column(
-              children: <Widget>[
-                Center(
-                  child: Text(
-                    'ما الحدث أو التاريخ الموافق للعنصر التالي ؟',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                        fontFamily: 'Amiri'),
+          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: Column(
+            children: <Widget>[
+              Center(
+                child: Text(
+                  'السؤال',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontFamily: 'Amiri',
                   ),
                 ),
-                Center(
-                  child: Text(
-                    '30 جوان 1999',
-                    style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontFamily: 'Amiri'),
+              ),
+              SizedBox(height: 30),
+              Center(
+                child: Text(
+                  'ما التاريخ أو الشرح الموافق للعنصر التالي:',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontFamily: 'Amiri',
                   ),
                 ),
-                SizedBox(height: 20),
-                Container(
+              ),
+              Center(
+                child: Text(
+                  '30 جوان 1999',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontFamily: 'Amiri',
+                  ),
+                ),
+              ),
+              Container(
+                height: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
-                  child: Column(
-                    children: <Widget>[
-                      RadioListTile(
-                        value: '',
-                        groupValue: '',
-                        onChanged: (String value) {},
-                        title: Text('حدث شيئ خطير'),
-                        activeColor: Colors.amber[800],
-                      ),
-                      RadioListTile(
-                        value: '',
-                        groupValue: '',
-                        onChanged: (String value) {},
-                        title: Text('لم يحدث شيء'),
-                        activeColor: Colors.amber[800],
-                      ),
-                      RadioListTile(
-                        value: '',
-                        groupValue: '',
-                        onChanged: (String value) {},
-                        title: Text('لم يحدث شيء'),
-                        activeColor: Colors.amber[800],
-                      ),
-                      RadioListTile(
-                        value: '',
-                        groupValue: '',
-                        onChanged: (String value) {},
-                        title: Text('لم يحدث شيء'),
-                        activeColor: Colors.amber[800],
-                      ),
-                    ],
-                  ),
                 ),
-                SizedBox(height: 20 ) ,
-                FlatButton.icon(
-                  icon: Icon(Icons.arrow_back_ios , color: Colors.white,),
-                  onPressed: () {},
-                  label: Text('التالي', style: TextStyle(
-                    fontSize: 20 , 
-                    color: Colors.white
-                  ),),
-                )
-              ],
-            )),
+                child: ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    isThreeLine: true,
+                    subtitle: Text(
+                      'الاجابة الاولى',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 27,
+                        color: Colors.black , 
+                      ),
+                    ),
+                    leading: Text(
+                      '$index',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    onTap: (){
+                    },
+                  ),
+                  itemCount: 4,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
+      textDirection: TextDirection.rtl,
     );
   }
 }

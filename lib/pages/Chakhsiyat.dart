@@ -73,6 +73,13 @@ class _ChakhsiyatState extends State<Chakhsiyat> {
                 leading: Icon(Icons.timer),
                 title: Text('امتحان مصغر - 5 دقائق'),
                 onTap: () {
+                  // var rng = new Random();
+                  // List questions = [];
+                  // var answers = [];
+                  // var correctAnswers = [];
+                  // for (int i = 0; i < 5; i++) {
+                  //   questions.add(chakhsiyat[rng.nextInt(chakhsiyat.length)]);
+                  // }
                   Navigator.pushNamed(context, '/quiz',
                       arguments: ['التواريخ', tawarikh]);
                 },
@@ -105,6 +112,15 @@ class _ChakhsiyatState extends State<Chakhsiyat> {
                 onTap: () {
                   Navigator.pushNamed(context, '/all',
                       arguments: ['الشخصيات', chakhsiyat]);
+                },
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.format_align_left),
+                title: Text('المفضلة'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/bookmarks');
                 },
               ),
             ),
