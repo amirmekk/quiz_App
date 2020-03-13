@@ -13,36 +13,46 @@ updateBookmarks(itemOne, itemTwo) {
   }
 
   if (isThere) {
-    print('already there');
-    return 'العنصر متواجد في المفضلة من قبل';
+    for (int i = 0; i < bookmarkedItems.length; i++) {
+      if (bookmarkedItems[i][0] == itemOne) {
+        bookmarkedItems.removeAt(i);
+      }
+    }
+    print(bookmarkedItems);
+    return Icon(Icons.star_border);
   }
   if (!isThere) {
     toBeAdded.addAll([itemOne, itemTwo]);
     bookmarkedItems.add(toBeAdded);
-    print('added');
-    return 'تمت الاضافة الى المفضلة';
+    print(bookmarkedItems);
+    return Icon(Icons.star);
   }
 }
 
-Widget updateBookmarks2(itemOne, itemTwo) {
+checkIfExist(itemOne) {
   bool isThere = false;
-  Widget icon;
+
   for (int i = 0; i < bookmarkedItems.length; i++) {
     if (bookmarkedItems[i][0] == itemOne) {
       isThere = true;
     }
   }
-
   if (isThere) {
-    icon = Icon(Icons.star);
+    print(bookmarkedItems);
+    return Icon(Icons.star);
   }
   if (!isThere) {
-    icon = Icon(Icons.star_border);
+    print(bookmarkedItems);
+    return Icon(Icons.star_border);
   }
-  return icon;
 }
 
-class Bookmarks extends StatelessWidget {
+class Bookmarks extends StatefulWidget {
+  @override
+  _BookmarksState createState() => _BookmarksState();
+}
+
+class _BookmarksState extends State<Bookmarks> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -58,7 +68,13 @@ class Bookmarks extends StatelessWidget {
                         title: Text(bookmarkedItems[index][0]),
                         subtitle: Text(bookmarkedItems[index][1]),
                         trailing: IconButton(
-                            icon: Icon(Icons.delete_forever), onPressed: () {}),
+                            icon: Icon(Icons.delete_forever),
+                            onPressed: () {
+                              setState(() {
+                                bookmarkedItems.removeAt(index);
+                                print(bookmarkedItems);
+                              });
+                            }),
                       ),
                     ),
                     itemCount: bookmarkedItems.length,

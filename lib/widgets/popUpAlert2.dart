@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:routing/pages/bookmarks.dart';
 
-class PopUpAlert2 extends StatelessWidget {
+class PopUpAlert2 extends StatefulWidget {
   final data;
   PopUpAlert2({this.data});
+
+  @override
+  _PopUpAlert2State createState() => _PopUpAlert2State();
+}
+
+class _PopUpAlert2State extends State<PopUpAlert2> {
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
-        title: Text('${data.itemOne}'),
-        content: Text('${data.itemTwo}'),
+        title: Text('${widget.data.itemOne}'),
+        content: Text('${widget.data.itemTwo}'),
         actions: <Widget>[
           Container(
             margin: EdgeInsets.all(10),
             child: Row(
               children: <Widget>[
                 GestureDetector(
-                  child: updateBookmarks2(data.itemOne, data.itemTwo),
+                  child: checkIfExist(widget.data.itemOne),
                   onTap: () {
-                    String isThere =
-                        updateBookmarks(data.itemOne, data.itemTwo);
-                    //there is an error down here
-                    //Scaffold.of(context).showSnackBar(
-                    //SnackBar(content: Text('تم الاضافة الى المفضلة')));
-                    Navigator.pop(context, 'OK');
+                    setState(() {
+                      updateBookmarks(
+                          widget.data.itemOne, widget.data.itemTwo);
+                    });
 
-                    showDialog(
-                      context: context,
-                      child: AlertDialog(
-                        title: Text(isThere),
-                      ),
-                    );
                   },
                 ),
               ],

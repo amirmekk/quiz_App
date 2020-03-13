@@ -117,11 +117,7 @@ class DataSearchAll extends SearchDelegate {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (_) =>PopUpAlert(data :newData ,index: index));
-              },
+              onTap: () {},
               title: Text(newData[index].itemOne),
               subtitle: Text(newData[index].itemTwo),
               trailing: IconButton(

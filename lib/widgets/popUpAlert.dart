@@ -18,12 +18,12 @@ class PopUpAlert extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 GestureDetector(
-                  child: updateBookmarks2(
+                  child: updateBookmarks(
                       data[1][index].itemOne, data[1][index].itemTwo),
                   onTap: () {
                     Navigator.pop(context, 'OK');
 
-                    updateBookmarks2(
+                    updateBookmarks(
                         data[1][index].itemOne, data[1][index].itemTwo);
                   },
                 ),
