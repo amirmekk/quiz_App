@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routing/pages/searchSuggestions.dart';
-import 'package:routing/widgets/popUpAlert2.dart';
-//import 'package:routing/widgets/popUpAlert.dart';
+
 
 class DataSearch extends SearchDelegate {
   List data;

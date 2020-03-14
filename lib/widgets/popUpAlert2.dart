@@ -15,7 +15,10 @@ class _PopUpAlert2State extends State<PopUpAlert2> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
-        //shape: RoundedRectangleBorder() ,
+        backgroundColor: Colors.amber[800],
+        shape:RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20) ,
+        )  ,
         title: Center(
           child: Text(
             '${widget.data.itemOne}',
