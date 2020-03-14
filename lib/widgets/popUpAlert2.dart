@@ -10,40 +10,47 @@ class PopUpAlert2 extends StatefulWidget {
 }
 
 class _PopUpAlert2State extends State<PopUpAlert2> {
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: AlertDialog(
-        title: Text('${widget.data.itemOne}'),
+        //shape: RoundedRectangleBorder() ,
+        title: Center(
+          child: Text(
+            '${widget.data.itemOne}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25 , 
+              fontFamily: 'Amiri'
+            ),
+          ),
+        ),
         content: Text('${widget.data.itemTwo}'),
         actions: <Widget>[
           Container(
             margin: EdgeInsets.all(10),
             child: Row(
               children: <Widget>[
-                GestureDetector(
-                  child: checkIfExist(widget.data.itemOne),
-                  onTap: () {
+                IconButton(
+                  icon: checkIfExist(widget.data.itemOne),
+                  onPressed: () {
                     setState(() {
-                      updateBookmarks(
-                          widget.data.itemOne, widget.data.itemTwo);
+                      updateBookmarks(widget.data.itemOne, widget.data.itemTwo);
                     });
-
+                  },
+                ),
+                IconButton(
+                  icon: Icon(
+                    Icons.check_circle_outline,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context, 'OK');
                   },
                 ),
               ],
             ),
-          ),
-          GestureDetector(
-            child: Icon(
-              Icons.check_circle,
-              size: 30,
-            ),
-            onTap: () {
-              Navigator.pop(context, 'OK');
-            },
           ),
         ],
       ),
