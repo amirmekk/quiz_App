@@ -4,6 +4,7 @@ import 'package:routing/pages/bookmarks.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
 import 'package:routing/pages/home.dart';
 import 'package:routing/pages/quiz.dart';
+import 'package:routing/pages/resultAfterQuiz.dart';
 import 'package:routing/pages/wad3iyat.dart';
 
 class RouteGenerator {
@@ -18,6 +19,12 @@ class RouteGenerator {
             courseAndQuiz: args,
           ),
         );
+      case '/resultAfterQuiz':
+        return MaterialPageRoute(
+          builder: (_) => ResultAfterQuiz(
+            data: args,
+          ),
+        );
       case '/all':
         return MaterialPageRoute(
           builder: (_) => All(
@@ -27,8 +34,8 @@ class RouteGenerator {
       case '/bookmarks':
         return MaterialPageRoute(
           builder: (_) => Bookmarks(
-            //allList: args,
-          ),
+              //allList: args,
+              ),
         );
       case '/wad3iyaPage':
         return MaterialPageRoute(

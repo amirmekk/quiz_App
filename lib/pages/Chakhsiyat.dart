@@ -1,8 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:routing/data/chakhsiyatData.dart';
-import 'package:routing/data/tawarikh.dart';
+import 'package:routing/data/quizData.dart';
 import 'package:routing/widgets/popUpAlert2.dart';
 
 class Chakhsiyat extends StatefulWidget {
@@ -73,15 +72,9 @@ class _ChakhsiyatState extends State<Chakhsiyat> {
                 leading: Icon(Icons.timer),
                 title: Text('امتحان مصغر - 5 دقائق'),
                 onTap: () {
-                  // var rng = new Random();
-                  // List questions = [];
-                  // var answers = [];
-                  // var correctAnswers = [];
-                  // for (int i = 0; i < 5; i++) {
-                  //   questions.add(chakhsiyat[rng.nextInt(chakhsiyat.length)]);
-                  // }
+
                   Navigator.pushNamed(context, '/quiz',
-                      arguments: ['التواريخ', tawarikh]);
+                      arguments: [ quiz1]);
                 },
               ),
             ),

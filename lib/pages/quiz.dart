@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:routing/data/tawarikh.dart';
 
 class Quiz extends StatefulWidget {
   final List quizData;
@@ -8,88 +7,231 @@ class Quiz extends StatefulWidget {
   _QuizState createState() => _QuizState();
 }
 
+int questionNumber = 0;
+int score = 0;
+
 class _QuizState extends State<Quiz> {
   @override
   void initState() {
     super.initState();
-    //_generateQAndA(tawarikh);
+    questionNumber = 0;
+    score = 0;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      child: Scaffold(
-        backgroundColor: Colors.blueGrey,
-        body: Container(
-          padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: Column(
-            children: <Widget>[
-              Center(
-                child: Text(
-                  'السؤال',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontFamily: 'Amiri',
+    return WillPopScope(
+      child: Directionality(
+        child: Scaffold(
+          backgroundColor: Colors.amber[800],
+          body: Container(
+            padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'السؤال ${questionNumber + 1} من ${widget.quizData[0].length} ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Amiri',
+                      ),
+                    ),
+                    Text(
+                      'لقد اجبت $score اجابات صحيحة ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Amiri',
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30),
+                Center(
+                  child: Text(
+                    'ما هي الاجابة الصحيحة الموافقة للعنصر التالي :',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontFamily: 'Amiri',
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 30),
-              Center(
-                child: Text(
-                  'ما التاريخ أو الشرح الموافق للعنصر التالي:',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontFamily: 'Amiri',
+                SizedBox(height: 20),
+                Center(
+                  child: Text(
+                    '${widget.quizData[0][questionNumber].question}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize:
+                          widget.quizData[0][questionNumber].question.length >
+                                  30
+                              ? 20
+                              : 40,
+                      fontFamily: 'Amiri',
+                    ),
                   ),
                 ),
-              ),
-              Center(
-                child: Text(
-                  '30 جوان 1999',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40,
-                    fontFamily: 'Amiri',
-                  ),
-                ),
-              ),
-              Container(
-                height: 400,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                Card(
                   color: Colors.white,
-                ),
-                child: ListView.builder(
-                  itemBuilder: (context, index) => ListTile(
-                    isThreeLine: true,
+                  child: ListTile(
+                    //isThreeLine: true,
                     subtitle: Text(
-                      'الاجابة الاولى',
+                      '${widget.quizData[0][questionNumber].answers[0]}',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 27,
-                        color: Colors.black , 
+                        fontSize: widget.quizData[0][questionNumber].answers[0]
+                                    .length >
+                                40
+                            ? 15
+                            : 25,
+                        color: Colors.black,
                       ),
                     ),
                     leading: Text(
-                      '$index',
+                      '1',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
-                    onTap: (){
+                    onTap: () {
+                      setState(() {
+                        if (widget.quizData[0][questionNumber].answers[0] ==
+                            widget.quizData[0][questionNumber].correctAnswer) {
+                          score++;
+                          print('corrcet');
+                        }
+                        updtaeQuestion();
+                      });
                     },
                   ),
-                  itemCount: 4,
                 ),
-              )
-            ],
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    //isThreeLine: true,
+                    subtitle: Text(
+                      '${widget.quizData[0][questionNumber].answers[1]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: widget.quizData[0][questionNumber].answers[1]
+                                    .length >
+                                40
+                            ? 15
+                            : 25,
+                        color: Colors.black,
+                      ),
+                    ),
+                    leading: Text(
+                      '2',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        if (widget.quizData[0][questionNumber].answers[1] ==
+                            widget.quizData[0][questionNumber].correctAnswer) {
+                          score++;
+                          print('corrcet');
+                        }
+                        updtaeQuestion();
+                      });
+                    },
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    //isThreeLine: true,
+                    subtitle: Text(
+                      '${widget.quizData[0][questionNumber].answers[2]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: widget.quizData[0][questionNumber].answers[2]
+                                    .length >
+                                40
+                            ? 15
+                            : 25,
+                        color: Colors.black,
+                      ),
+                    ),
+                    leading: Text(
+                      '3',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        if (widget.quizData[0][questionNumber].answers[2] ==
+                            widget.quizData[0][questionNumber].correctAnswer) {
+                          score++;
+                          print('corrcet');
+                        }
+                        updtaeQuestion();
+                      });
+                    },
+                  ),
+                ),
+                Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    //isThreeLine: true,
+                    subtitle: Text(
+                      '${widget.quizData[0][questionNumber].answers[3]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: widget.quizData[0][questionNumber].answers[3]
+                                    .length >
+                                40
+                            ? 15
+                            : 25,
+                        color: Colors.black,
+                      ),
+                    ),
+                    leading: Text(
+                      '4',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        if (widget.quizData[0][questionNumber].answers[3] ==
+                            widget.quizData[0][questionNumber].correctAnswer) {
+                          score++;
+                          print('corrcet');
+                        }
+                        updtaeQuestion();
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+        textDirection: TextDirection.rtl,
       ),
-      textDirection: TextDirection.rtl,
+      onWillPop: () async => false,
     );
+  }
+
+  void updtaeQuestion() {
+    if (questionNumber == widget.quizData[0].length - 1) {
+      print(score);
+      Navigator.popAndPushNamed(context, '/resultAfterQuiz',
+          arguments: [score, widget.quizData[0].length]);
+    } else {
+      questionNumber++;
+    }
   }
 }
