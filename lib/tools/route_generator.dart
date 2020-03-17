@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:routing/pages/Chakhsiyat.dart';
+import 'package:routing/pages/Mostala7at.dart';
+import 'package:routing/pages/Tawarikh.dart';
 import 'package:routing/pages/all.dart';
 import 'package:routing/pages/bookmarks.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
@@ -18,6 +21,18 @@ class RouteGenerator {
           builder: (_) => CourseAndQuiz(
             courseAndQuiz: args,
           ),
+        );
+      case '/chakhsiyat':
+        return MaterialPageRoute(
+          builder: (_) => Chakhsiyat(),
+        );
+        case '/mostala7at':
+        return MaterialPageRoute(
+          builder: (_) => Mostala7at(),
+        );
+        case '/tawaraikh':
+        return MaterialPageRoute(
+          builder: (_) => Tawarikh(),
         );
       case '/resultAfterQuiz':
         return MaterialPageRoute(
