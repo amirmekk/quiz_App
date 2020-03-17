@@ -3,7 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:routing/data/allData.dart';
-import 'package:routing/pages/Chakhsiyat.dart';
+import 'package:routing/data/chakhsiyatData.dart';
+import 'package:routing/data/mostala7atData.dart';
+import 'package:routing/data/tawarikh.dart';
+import 'package:routing/pages/all.dart';
 import 'package:routing/pages/bookmarks.dart';
 
 class Home extends StatefulWidget {
@@ -14,14 +17,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-// showSearch(
-//                         context: context, delegate: DataSearch(data: allData));
-//                   },
-
   int _selectedIndex = 0;
   List<Widget> _pages = [
     HomePage(),
-    Chakhsiyat(),
+    All(
+      allList: ['العناصر', allData],
+    ),
     Bookmarks(),
   ];
   _onItemTaped(int index) {
@@ -147,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Container(
-                  height: 850,
+                  height: 900,
                   padding: EdgeInsets.fromLTRB(0, 20, 10, 40),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -224,44 +225,6 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 20, 10),
                         child: Text(
-                          'تصفح حسب الوحدات',
-                          style: TextStyle(
-                              color: Colors.amber[800],
-                              fontSize: 20,
-                              fontFamily: 'Amiri'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 220,
-                        child: ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) => Card(
-                            color: Colors.amber[200],
-                            child: ListTile(
-                                leading: Text(
-                                  '${index + 1}',
-                                  style: TextStyle(
-                                    color: Colors.amber[800],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                title: Text(
-                                  '${wa7adat[index]}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                                trailing: Icon(Icons.arrow_forward_ios,
-                                    color: Colors.amber[800])),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 20, 10),
-                        child: Text(
                           'عنصر عشوائي',
                           style: TextStyle(
                               color: Colors.amber[800],
@@ -282,6 +245,57 @@ class _HomePageState extends State<HomePage> {
                                     new Random().nextInt(allData.length)];
                               });
                             },
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 20, 10),
+                        child: Text(
+                          'تصفح حسب الوحدات',
+                          style: TextStyle(
+                              color: Colors.amber[800],
+                              fontSize: 20,
+                              fontFamily: 'Amiri'),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 220,
+                        child: ListView.builder(
+                          itemCount: 3,
+                          itemBuilder: (context, index) => Card(
+                            color: Colors.amber[200],
+                            child: ListTile(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/courseAndQuiz2',
+                                    arguments: [
+                                      index + 1, //reprensents wi7da number
+                                      tawarikh,
+                                      chakhsiyat,
+                                      mostala7at,
+                                    ],
+                                  );
+                                },
+                                leading: Text(
+                                  '${index + 1}',
+                                  style: TextStyle(
+                                    color: Colors.amber[800],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                title: Text(
+                                  '${wa7adat[index]}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                trailing: Icon(Icons.arrow_forward_ios,
+                                    color: Colors.amber[800])),
                           ),
                         ),
                       ),

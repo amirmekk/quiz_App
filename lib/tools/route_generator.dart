@@ -5,6 +5,7 @@ import 'package:routing/pages/Tawarikh.dart';
 import 'package:routing/pages/all.dart';
 import 'package:routing/pages/bookmarks.dart';
 import 'package:routing/pages/courseAndQuiz.dart';
+import 'package:routing/pages/courseAndQuiz2.dart';
 import 'package:routing/pages/home.dart';
 import 'package:routing/pages/quiz.dart';
 import 'package:routing/pages/resultAfterQuiz.dart';
@@ -19,6 +20,12 @@ class RouteGenerator {
       case '/courseAndQuiz':
         return MaterialPageRoute(
           builder: (_) => CourseAndQuiz(
+            courseAndQuiz: args,
+          ),
+        );
+        case '/courseAndQuiz2':
+        return MaterialPageRoute(
+          builder: (_) => CourseAndQuiz2(
             courseAndQuiz: args,
           ),
         );

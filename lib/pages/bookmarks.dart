@@ -61,7 +61,7 @@ class _BookmarksState extends State<Bookmarks> {
         appBar: AppBar(title: Text('المفضلة')),
         body: Container(
             child: bookmarkedItems.isEmpty
-                ? Center(child: Text('add bookmarks to see them here'))
+                ? Center(child: Text('قم باضافة عناصر الى المفضلة لتتمكن من رؤيتهم هنا'))
                 : ListView.builder(
                     itemBuilder: (context, index) => Card(
                       child: ListTile(

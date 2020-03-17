@@ -3,7 +3,7 @@ import 'package:routing/data/tawarikh.dart';
 
 class CourseAndQuiz extends StatefulWidget {
   final List courseAndQuiz;
-  CourseAndQuiz({Key key , this.courseAndQuiz}):super(key: key);
+  CourseAndQuiz({Key key, this.courseAndQuiz}) : super(key: key);
 
   @override
   _CourseAndQuizState createState() => _CourseAndQuizState();
@@ -25,49 +25,50 @@ class _CourseAndQuizState extends State<CourseAndQuiz> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('${widget.courseAndQuiz[1]} ${widget.courseAndQuiz[0]}'),
-            bottom: TabBar(tabs: [
-              Tab(text: 'عناصر للحفظ'),
-              Tab(text: 'امتحان قصير'),
-            ]),
+            title:
+                Text('${widget.courseAndQuiz[1]} ${widget.courseAndQuiz[0]}'),
           ),
-          body: TabBarView(children: [
-            ListView.builder(
-              itemBuilder: (context, index) => Card(
-                child: ListTile(
-                  onTap: () {
-                    List newTwaraikh = tawarikh.where((i) => i.wad3iya ==index+1 && i.wihda==widget.courseAndQuiz[4]).toList();
-                    Navigator.pushNamed(context, '/wad3iyaPage',
-                        arguments: [wad3iyat[index], newTwaraikh]);
-                  },
-                  leading: Text(
-                    '${index + 1}',
+          body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 40, 10),
+                  child: Text(
+                    'الوضعيات',
                     style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
+                        color: Colors.amber[800],
+                        fontSize: 20,
+                        fontFamily: 'Amiri'),
+                  ),
+                ),
+                SizedBox(
+                  height: 400,
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => Card(
+                      child: ListTile(
+                        onTap: () {
+                          List newTwaraikh = tawarikh
+                              .where((i) =>
+                                  i.wad3iya == index + 1 &&
+                                  i.wihda == widget.courseAndQuiz[4])
+                              .toList();
+                          Navigator.pushNamed(context, '/wad3iyaPage',
+                              arguments: [wad3iyat[index], newTwaraikh]);
+                        },
+                        leading: Text(
+                          '${index + 1}',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        title: Text(wad3iyat[index]),
+                      ),
                     ),
+                    itemCount: widget.courseAndQuiz[2],
                   ),
-                  title: Text(wad3iyat[index]),
                 ),
-              ),
-              itemCount: widget.courseAndQuiz[2],
-            ),
-            ListView.builder(
-              itemBuilder: (context, index) => Card(
-                child: ListTile(
-                  onTap: () {
-                    print('amir');
-                  },
-                  leading: Text(
-                    '${index + 1}',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  title: Text(wad3iyat[index]),
-                ),
-              ),
-              itemCount: widget.courseAndQuiz[3],
-            ),
-          ]),
+              ]),
         ),
       ),
     );

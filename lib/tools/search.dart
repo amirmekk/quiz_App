@@ -43,3 +43,4 @@ class DataSearch extends SearchDelegate {
     return SearchSuggestions(data : newData);
   }
 }
+ 
