@@ -9,6 +9,7 @@ import 'package:routing/pages/courseAndQuiz2.dart';
 import 'package:routing/pages/home.dart';
 import 'package:routing/pages/quiz.dart';
 import 'package:routing/pages/resultAfterQuiz.dart';
+import 'package:routing/pages/splashScreen.dart';
 import 'package:routing/pages/wad3iyat.dart';
 
 class RouteGenerator {
@@ -16,6 +17,8 @@ class RouteGenerator {
     final args = settings.arguments;
     switch (settings.name) {
       case '/':
+        return MaterialPageRoute(builder: (_) => SplashScreen());
+      case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       case '/courseAndQuiz':
         return MaterialPageRoute(
@@ -23,7 +26,7 @@ class RouteGenerator {
             courseAndQuiz: args,
           ),
         );
-        case '/courseAndQuiz2':
+      case '/courseAndQuiz2':
         return MaterialPageRoute(
           builder: (_) => CourseAndQuiz2(
             courseAndQuiz: args,
@@ -33,11 +36,11 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => Chakhsiyat(),
         );
-        case '/mostala7at':
+      case '/mostala7at':
         return MaterialPageRoute(
           builder: (_) => Mostala7at(),
         );
-        case '/tawaraikh':
+      case '/tawaraikh':
         return MaterialPageRoute(
           builder: (_) => Tawarikh(),
         );
