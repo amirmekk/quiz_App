@@ -220,6 +220,24 @@ class _QuizState extends State<Quiz> {
                       },
                     ),
                   ),
+                  FlatButton.icon(
+                    label: Text(
+                      'التالي',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        updtaeQuestion();
+                      });
+                    },
+                  ),
                 ],
               ),
             ]),

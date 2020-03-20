@@ -27,6 +27,11 @@ class _CourseAndQuiz2State extends State<CourseAndQuiz2> {
       'الوحدة الثانية',
       'الوحدة الثالثة',
     ];
+    List _quizzes = [
+      [quiz1, quiz2, quiz3, quiz4],
+      [quiz5, quiz6, quiz7, quiz8],
+      [quiz9, quiz10, quiz11 ,quiz11],
+    ];
     List filteredTawarikhData = [];
     List filteredChakhsiyatData = [];
     List filteredMostala7atData = [];
@@ -148,7 +153,7 @@ class _CourseAndQuiz2State extends State<CourseAndQuiz2> {
                 ),
               ),
               ListView.builder(
-                itemCount: 5,
+                itemCount: 4,
                 itemBuilder: (context, index) => Card(
                   child: ListTile(
                     title: Text(
@@ -159,7 +164,9 @@ class _CourseAndQuiz2State extends State<CourseAndQuiz2> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/quiz', arguments: [quiz1]);
+                      Navigator.pushNamed(context, '/quiz', arguments: [
+                        _quizzes[widget.courseAndQuiz[0] - 1][index]
+                      ]);
                     },
                   ),
                 ),
