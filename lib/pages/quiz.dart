@@ -18,6 +18,13 @@ class _QuizState extends State<Quiz> {
     score = 0;
   }
 
+  bool onHighLight = false;
+  List trueOrFalseColors = [
+    Colors.white,
+    Colors.white,
+    Colors.white,
+    Colors.white,
+  ];
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -76,150 +83,6 @@ class _QuizState extends State<Quiz> {
                       ),
                     ),
                   ),
-                  Card(
-                    color: Colors.white,
-                    child: ListTile(
-                      //isThreeLine: true,
-                      subtitle: Text(
-                        '${widget.quizData[0][questionNumber].answers[0]}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: widget.quizData[0][questionNumber]
-                                      .answers[0].length >
-                                  40
-                              ? 15
-                              : 25,
-                          color: Colors.black,
-                        ),
-                      ),
-                      leading: Text(
-                        '1',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          if (widget.quizData[0][questionNumber].answers[0] ==
-                              widget
-                                  .quizData[0][questionNumber].correctAnswer) {
-                            score++;
-                            print('corrcet');
-                          }
-                          updtaeQuestion();
-                        });
-                      },
-                    ),
-                  ),
-                  Card(
-                    color: Colors.white,
-                    child: ListTile(
-                      //isThreeLine: true,
-                      subtitle: Text(
-                        '${widget.quizData[0][questionNumber].answers[1]}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: widget.quizData[0][questionNumber]
-                                      .answers[1].length >
-                                  40
-                              ? 15
-                              : 25,
-                          color: Colors.black,
-                        ),
-                      ),
-                      leading: Text(
-                        '2',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          if (widget.quizData[0][questionNumber].answers[1] ==
-                              widget
-                                  .quizData[0][questionNumber].correctAnswer) {
-                            score++;
-                            print('corrcet');
-                          }
-                          updtaeQuestion();
-                        });
-                      },
-                    ),
-                  ),
-                  Card(
-                    color: Colors.white,
-                    child: ListTile(
-                      //isThreeLine: true,
-                      subtitle: Text(
-                        '${widget.quizData[0][questionNumber].answers[2]}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: widget.quizData[0][questionNumber]
-                                      .answers[2].length >
-                                  40
-                              ? 15
-                              : 25,
-                          color: Colors.black,
-                        ),
-                      ),
-                      leading: Text(
-                        '3',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          if (widget.quizData[0][questionNumber].answers[2] ==
-                              widget
-                                  .quizData[0][questionNumber].correctAnswer) {
-                            score++;
-                            print('corrcet');
-                          }
-                          updtaeQuestion();
-                        });
-                      },
-                    ),
-                  ),
-                  Card(
-                    color: Colors.white,
-                    child: ListTile(
-                      //isThreeLine: true,
-                      subtitle: Text(
-                        '${widget.quizData[0][questionNumber].answers[3]}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: widget.quizData[0][questionNumber]
-                                      .answers[3].length >
-                                  40
-                              ? 15
-                              : 25,
-                          color: Colors.black,
-                        ),
-                      ),
-                      leading: Text(
-                        '4',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          if (widget.quizData[0][questionNumber].answers[3] ==
-                              widget
-                                  .quizData[0][questionNumber].correctAnswer) {
-                            score++;
-                            print('corrcet');
-                          }
-                          updtaeQuestion();
-                        });
-                      },
-                    ),
-                  ),
                   FlatButton.icon(
                     label: Text(
                       'التالي',
@@ -238,6 +101,64 @@ class _QuizState extends State<Quiz> {
                       });
                     },
                   ),
+                  SizedBox(
+                    height: 800,
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, index) => Card(
+                        color: trueOrFalseColors[index],
+                        child: ListTile(
+                          enabled: !onHighLight,
+                          subtitle: Text(
+                            '${widget.quizData[0][questionNumber].answers[index]}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: widget.quizData[0][questionNumber]
+                                          .answers[index].length >
+                                      40
+                                  ? 15
+                                  : 25,
+                              color: Colors.black,
+                            ),
+                          ),
+                          leading: Text(
+                            '1',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              for (int i = 0;
+                                  i <
+                                      widget.quizData[0][questionNumber].answers
+                                          .length;
+                                  i++) {
+                                if (widget.quizData[0][questionNumber]
+                                            .answers[i] ==
+                                        widget.quizData[0][questionNumber]
+                                            .correctAnswer &&
+                                    onHighLight == false) {
+                                  trueOrFalseColors[i] = Colors.green;
+                                } else {
+                                  trueOrFalseColors[i] = Colors.red;
+                                }
+                              }
+                              if (widget.quizData[0][questionNumber]
+                                          .answers[index] ==
+                                      widget.quizData[0][questionNumber]
+                                          .correctAnswer &&
+                                  onHighLight == false) {
+                                score++;
+                              }
+                              onHighLight = true;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ]),
@@ -250,12 +171,16 @@ class _QuizState extends State<Quiz> {
   }
 
   void updtaeQuestion() {
+    for (int i = 0; i < trueOrFalseColors.length; i++) {
+      trueOrFalseColors[i] = Colors.white;
+    }
     if (questionNumber == widget.quizData[0].length - 1) {
       print(score);
       Navigator.popAndPushNamed(context, '/resultAfterQuiz',
           arguments: [score, widget.quizData[0].length]);
     } else {
       questionNumber++;
+      onHighLight = false;
     }
   }
 }
